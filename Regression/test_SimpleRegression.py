@@ -29,8 +29,25 @@ def main():
     feature_sqft_living = np.array(train_data['sqft_living'])
     feature_bedrooms = np.array(train_data['bedrooms'])
     outputs = np.array(train_data['price'])
+    x = [1,2,3,4,5]
+    y = [2,1,4,3,5]
+
+    intercept, slope = SR.simple_linear_regression(np.array(x), np.array(y))
+    print intercept, slope
+    print SR.get_regression_predictions(1, slope = slope, intercept = intercept)
+
 
     intercept, slope = SR.simple_linear_regression(feature_sqft_living, outputs)
+    # predict 2650 sqft
+    pred_2650sqft =  SR.get_regression_predictions(2650, intercept, slope)
+    print pred_2650sqft
+    # RSS of train data
+    RSS_train_data = SR.get_residual_sum_of_squares(feature_sqft_living, outputs, intercept, slope)
+    print RSS_train_data
+    # hosue price is $800000 and its squre feet
+    sqrtft_800000 = SR.inverse_regression_predictions(800000, slope = slope , intercept = intercept)
+    print sqrtft_800000
+
 
 
 
