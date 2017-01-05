@@ -23,6 +23,12 @@ def get_residual_sum_of_squares(model, data, outcome):
     RSS = (Residual*Residual).sum()
     return(RSS)
 
+def feature_derivative(errors, feature):
+    # Assume that errors and feature are both numpy arrays of the same length (number of data points)
+    # compute twice the dot product of these vectors as 'derivative' and return the value
+    derivative = 2*np.dot(errors, feature)
+    return(derivative)
+
 def regression_gradient_descent(feature_matrix, output, initial_weights, step_size, tolerance):
     converged = False 
     weights = np.array(initial_weights) # make sure it's a numpy array
