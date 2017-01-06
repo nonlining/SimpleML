@@ -31,6 +31,27 @@ def main():
     feature_bedrooms = np.array(train_data['bedrooms'])
     outputs = np.array(train_data['price'])
 
+    Model1_features = ['sqft_living']
+    Model1_output = ['price']
+    (feature_matrix1, output_vector) = SR.get_data(train_data, Model1_features, Model1_output)
+    (feature_matrix1_t, output_vector_t) = SR.get_data(test_data, Model1_features, Model1_output)
+
+    step_size1 = 7.0e-12
+    tolerance1 = 2.5e7
+    init_weights1 = np.array([-47000.0, 1.0]).reshape((2, 1))
+
+    Model1_weights = SR.regression_gradient_descent(feature_matrix1,
+                                                     output_vector,
+                                                     init_weights1,
+                                                     step_size1,
+                                                     tolerance1)
+
+
+    test1_predictions = SR.predict(feature_matrix1_t, Model1_weights)
+    print test1_predictions[0]
+    RSS1 = SR.get_residual_sum_of_squares(feature_matrix1_t, Model1_weights, output_vector_t)
+    print RSS1
+
 
 
 if __name__ == '__main__':
