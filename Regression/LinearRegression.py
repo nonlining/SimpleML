@@ -13,13 +13,8 @@ from math import log
 
 
 def get_residual_sum_of_squares(features_matrix, weights, outputs):
-    # First get the predictions
     pred_y = predict(features_matrix, weights)
-    # Then compute the residuals/errors
     Residual = outputs - pred_y
-
-    # print Residual
-    # Then square and add them up
     RSS = (Residual*Residual).sum()
     return(RSS)
 
@@ -27,10 +22,12 @@ def get_data(data_frame, features, output):
     data_frame['constant'] = 1.0
     features = ['constant'] + features
     features_matrix = np.array(data_frame[features])
+
     if output != None:
         output_array = np.array(data_frame[output])
     else:
         output_array = []
+
     return(features_matrix, output_array)
 
 def predict(feature_matrix, weights):
