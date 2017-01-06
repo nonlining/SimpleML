@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        Linear Regression 
+# Name:        Linear Regression
 # Purpose:
 #
 # Author:      Nonlining
@@ -23,11 +23,21 @@ def get_residual_sum_of_squares(model, data, outcome):
     RSS = (Residual*Residual).sum()
     return(RSS)
 
+def get_data(data_frame, features, output):
+    data_frame['constant'] = 1.0
+    features = ['constant'] + features
+    features_matrix = np.array(data_frame[features])
+    if output != None:
+        output_array = np.array(data_frame[output])
+    else:
+        output_array = []
+    return(features_matrix, output_array)
+
 def predict_output(feature_matrix, weights):
     return np.dot(feature_matrix, weights)
 
 def regression_gradient_descent(feature_matrix, output, initial_weights, step_size, tolerance):
-    converged = False 
+    converged = False
     weights = np.array(initial_weights) # make sure it's a numpy array
 
     while not converged:
