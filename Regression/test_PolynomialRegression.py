@@ -28,23 +28,34 @@ dtype_dict = {'bathrooms':float, 'waterfront':int,
               'sqft_basement':int, 'yr_built':int,
               'id':str, 'sqft_lot':int, 'view':int}
 
-
-
-
-sales = None
 train_data = None
 test_data = None
-
+validation_data = None
 
 # load data from csv files
 def loaddata():
-    global sales, train_data, test_data
-    train_data = pd.read_csv('../Datafiles/kc_house_train_data.csv')
-    test_data = pd.read_csv('../Datafiles/kc_house_test_data.csv')
+    global train_data, test_data, validation_data
+    train_data = pd.read_csv('../Datafiles/wk3_kc_house_train_data.csv', dtype=dtype_dict)
+    test_data = pd.read_csv('../Datafiles/wk3_kc_house_test_data.csv', dtype=dtype_dict)
+    validation_data = pd.read_csv('../Datafiles/wk3_kc_house_test_data.csv', dtype=dtype_dict)
 
 
 def main():
-    pass
+    loaddata()
+    global train_data, test_data, validation_data
+
+    train_data = train_data.sort(['sqft_living'])
+    test_data = test_data.sort(['sqft_living'])
+    validation_data = validation_data.sort(['sqft_living'])
+
+    poly1_data = PR.polynomial_dataframe(train_data['sqft_living'], 1)\
+
+    output = train_data['price']
+    print output
+
+    model1 = LinearRegression()
+    model1.fit(poly1_data, output)
+
 
 if __name__ == '__main__':
     main()

@@ -9,11 +9,11 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 import numpy as np
-import panda as pd
+import pandas as pd
 
 def polynomial_dataframe(feature, degree):
 
-    polynomial_dataframe = pd.dataframe()
+    poly_dataframe = pd.DataFrame()
 
     poly_dataframe['power_1'] = feature
 
