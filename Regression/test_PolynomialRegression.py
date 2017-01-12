@@ -55,11 +55,11 @@ def main():
     loaddata()
     global train_data, test_data, validation_data
 
-    train_data = train_data.sort(['sqft_living'])
-    test_data = test_data.sort(['sqft_living'])
-    validation_data = validation_data.sort(['sqft_living'])
+    train_data = train_data.sort_values(['sqft_living'])
+    test_data = test_data.sort_values(['sqft_living'])
+    validation_data = validation_data.sort_values(['sqft_living'])
 
-    poly1_data = PR.polynomial_dataframe(train_data['sqft_living'], 1)\
+    poly1_data = PR.polynomial_dataframe(train_data['sqft_living'], 1)
 
     output = train_data['price']
 
