@@ -32,6 +32,17 @@ train_data = None
 test_data = None
 validation_data = None
 
+
+def plot(model, features, output):
+    import matplotlib.pyplot as pl
+    pl.plot(features['power_1'], output, '.', label='output')
+    pl.plot(features['power_1'], model.predict(features), '-', label='regression line')
+    pl.title('Price vs Sq.ft.')
+    pl.ylabel('Price')
+    pl.xlabel('Sq.ft.')
+    pl.legend(loc='upper left')
+    pl.show()
+
 # load data from csv files
 def loaddata():
     global train_data, test_data, validation_data
@@ -51,10 +62,12 @@ def main():
     poly1_data = PR.polynomial_dataframe(train_data['sqft_living'], 1)\
 
     output = train_data['price']
-    print output
+
 
     model1 = LinearRegression()
     model1.fit(poly1_data, output)
+
+    plot(model1, poly1_data, output)
 
 
 if __name__ == '__main__':

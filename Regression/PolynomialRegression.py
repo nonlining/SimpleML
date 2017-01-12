@@ -13,14 +13,14 @@ import pandas as pd
 
 def polynomial_dataframe(feature, degree):
 
-    poly_dataframe = pd.DataFrame()
+    poly = pd.DataFrame()
 
-    poly_dataframe['power_1'] = feature
+    poly['power_1'] = feature
 
     if degree > 1:
         for power in range(2, degree+1):
             # first we'll give the column a name:
             name = 'power_' + str(power)
-            poly_dataframe[name] = feature.apply(lambda x: x**power)
+            poly[name] = feature.apply(lambda x: x**power)
 
-    return poly_dataframe
+    return poly
