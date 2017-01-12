@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        module1
+# Name:        test case for Polynomial Regression
 # Purpose:
 #
 # Author:      Nonlining
@@ -37,9 +37,9 @@ def plot(model, features, output):
     import matplotlib.pyplot as pl
     pl.plot(features['power_1'], output, '.', label='output')
     pl.plot(features['power_1'], model.predict(features), '-', label='regression line')
-    pl.title('Price vs Sq.ft.')
+    pl.title('Price vs Squrt ft.')
     pl.ylabel('Price')
-    pl.xlabel('Sq.ft.')
+    pl.xlabel('Squrt ft.')
     pl.legend(loc='upper left')
     pl.show()
 
@@ -59,15 +59,15 @@ def main():
     test_data = test_data.sort_values(['sqft_living'])
     validation_data = validation_data.sort_values(['sqft_living'])
 
+
+
     poly1_data = PR.polynomial_dataframe(train_data['sqft_living'], 1)
+    output1 = train_data['price']
+    Model1 = LinearRegression()
+    Model1.fit(poly1_data, output1)
 
-    output = train_data['price']
+    plot(Model1, poly1_data, output1)
 
-
-    model1 = LinearRegression()
-    model1.fit(poly1_data, output)
-
-    plot(model1, poly1_data, output)
 
 
 if __name__ == '__main__':
