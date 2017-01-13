@@ -24,3 +24,10 @@ def polynomial_dataframe(feature, degree):
             poly[name] = feature.apply(lambda x: x**power)
 
     return poly
+
+
+def get_residual_sum_of_squares(model, features, output):
+
+    RSS = np.sum((output - model.predict(features)) ** 2)
+
+    return(RSS)

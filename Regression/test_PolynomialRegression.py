@@ -66,6 +66,8 @@ def main():
     Model1 = LinearRegression()
     Model1.fit(poly1_data, output1)
 
+    print 'RSS of model 1 ', PR.get_residual_sum_of_squares(Model1, poly1_data, output1)
+
     plot(Model1, poly1_data, output1)
 
 
