@@ -29,8 +29,8 @@ def main():
     feature_sqft_living = np.array(train_data['sqft_living'])
     feature_bedrooms = np.array(train_data['bedrooms'])
     outputs = np.array(train_data['price'])
-    x = [1,2,3,4,5]
-    y = [2,1,4,3,5]
+    x = [1,2,2,3,3,4,5,6,6,6,8,10]
+    y = [-890,-1411,-1560,-2220,-2091,-2878,-3537,-3268,-3920,-4163,-5471,-5157]
 
     intercept, slope = SR.simple_linear_regression(np.array(x), np.array(y))
     print intercept, slope
