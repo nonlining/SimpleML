@@ -28,9 +28,6 @@ dtype_dict = {'bathrooms':float, 'waterfront':int,
               'sqft_basement':int, 'yr_built':int,
               'id':str, 'sqft_lot':int, 'view':int}
 
-train_data = None
-test_data = None
-validation_data = None
 
 
 def plot(model, features, output):
@@ -43,23 +40,18 @@ def plot(model, features, output):
     pl.legend(loc='upper left')
     pl.show()
 
-# load data from csv files
-def loaddata():
-    global train_data, test_data, validation_data
+
+
+
+def main():
+    # load data from csv files
     train_data = pd.read_csv('../Datafiles/wk3_kc_house_train_data.csv', dtype=dtype_dict)
     test_data = pd.read_csv('../Datafiles/wk3_kc_house_test_data.csv', dtype=dtype_dict)
     validation_data = pd.read_csv('../Datafiles/wk3_kc_house_test_data.csv', dtype=dtype_dict)
 
-
-def main():
-    loaddata()
-    global train_data, test_data, validation_data
-
     train_data = train_data.sort_values(['sqft_living'])
     test_data = test_data.sort_values(['sqft_living'])
     validation_data = validation_data.sort_values(['sqft_living'])
-
-
 
     poly1_data = PR.polynomial_dataframe(train_data['sqft_living'], 1)
     output1 = train_data['price']
