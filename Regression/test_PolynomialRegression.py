@@ -62,6 +62,38 @@ def main():
 
     plot(Model1, poly1_data, output1)
 
+	# Read more dataset
+    houseSet1 = pd.read_csv('../Datafiles/wk3_kc_house_set_1_data.csv', dtype=dtype_dict)
+    houseSet2 = pd.read_csv('../Datafiles/wk3_kc_house_set_2_data.csv', dtype=dtype_dict)
+    houseSet3 = pd.read_csv('../Datafiles/wk3_kc_house_set_3_data.csv', dtype=dtype_dict)
+    houseSet4 = pd.read_csv('../Datafiles/wk3_kc_house_set_4_data.csv', dtype=dtype_dict)
+
+    houseSet1 = houseSet1.sort_values(['sqft_living', 'price'])
+    houseSet2 = houseSet2.sort_values(['sqft_living', 'price'])
+    houseSet3 = houseSet3.sort_values(['sqft_living', 'price'])
+    houseSet4 = houseSet4.sort_values(['sqft_living', 'price'])
+
+    polySet1 = PR.polynomial_dataframe(houseSet1['sqft_living'], 15)
+    polySet2 = PR.polynomial_dataframe(houseSet2['sqft_living'], 15)
+    polySet3 = PR.polynomial_dataframe(houseSet3['sqft_living'], 15)
+    polySet4 = PR.polynomial_dataframe(houseSet4['sqft_living'], 15)
+
+    outputSet1 = houseSet1['price']
+    outputSet2 = houseSet2['price']
+    outputSet3 = houseSet3['price']
+    outputSet4 = houseSet4['price']
+
+    modelSet1 = LinearRegression()
+    modelSet2 = LinearRegression()
+    modelSet3 = LinearRegression()
+    modelSet4 = LinearRegression()
+
+    modelSet1.fit(polySet1, outputSet1)
+    modelSet2.fit(polySet2, outputSet2)
+    modelSet3.fit(polySet3, outputSet3)
+    modelSet4.fit(polySet4, outputSet4)
+
+
 
 
 if __name__ == '__main__':
