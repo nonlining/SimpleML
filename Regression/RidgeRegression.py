@@ -21,6 +21,7 @@ def Ridge_Regression_gradient_descent(features, output, initial_weights, step_si
     weights = np.array(initial_weights)
     weights_scaler = np.ones(len(weights))
     weights_scaler[1:] = 1.0 - 2.0 * step_size * l2_penalty
+    print weights_scaler
     weights_scaler = weights_scaler.reshape((len(weights),1))
     iteration = 0
     print 'Starting Gradient descent'
