@@ -36,3 +36,22 @@ def Ridge_Regression_gradient_descent(features, output, initial_weights, step_si
             converged = True
             print 'Stopping at iteration: ' + str(iteration - 1)
     return(weights)
+
+
+def get_residual_sum_of_squares(features, weights, output):
+    predictions = predict(features, weights)
+    residual = np.sum((predictions - output) ** 2)
+
+    return(residual)
+
+def extract_data_from_features(data, features, output):
+    data['constant'] = 1.0
+    features = ['constant'] + features
+    features_matrix = np.array(data[features])
+
+    if output != None:
+        output_array = np.array(data[output])
+    else:
+        output_array = []
+
+    return(features_matrix, output_array)
