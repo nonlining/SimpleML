@@ -62,6 +62,15 @@ def main():
                                                             tolerance=tolerance,
                                                        max_iterations=iterations)
     print simple_model_l2
+    plt.title('L2 penalty comparison')
+    plt.ylabel('Price')
+    plt.xlabel('Sq.ft.')
+    plt.plot(train_feature_matrix[:,1], train_output, 'k.', label='training data')
+    plt.plot(train_feature_matrix[:,1], RR.predict(train_feature_matrix, simple_model), 'b-', label='L2=0')
+    plt.plot(train_feature_matrix[:,1], RR.predict(train_feature_matrix, simple_model_l2), 'r-', label='L2=1e11')
+    plt.legend(loc='upper left')
+    plt.show()
+
 
 
 if __name__ == '__main__':
