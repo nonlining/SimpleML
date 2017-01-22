@@ -35,33 +35,33 @@ def main():
     features = ['sqft_living']
     target = ['price']
 
-    init_weights = np.array([0.0, 0.0]).reshape((2, 1))
+    initial_weights = np.array([0.0, 0.0]).reshape((2, 1))
     iterations = 1000
     stepSize = 1e-12
     tolerance = 0
-    train_feature_matrix, train_output = RR.extract_data_from_features(train_data, features, target)
-    test_feature_matrix, test_output = RR.extract_data_from_features(test_data, features, target)
-
-
+    train_feature, train_output = RR.extract_data_from_features(train_data, features, target)
+    test_feature ,  test_output = RR.extract_data_from_features(test_data, features, target)
     l2_penalty = 0
-    simple_model = RR.Ridge_Regression_gradient_descent(train_feature_matrix,
-                                                                train_output,
-                                                                init_weights,
-                                                          step_size=stepSize,
-                                                       l2_penalty=l2_penalty,
-                                                         tolerance=tolerance,
-                                                    max_iterations=iterations)
+	
+    simple_model = RR.Ridge_Regression_gradient_descent(train_feature,
+                                                         train_output,
+                                                      initial_weights,
+                                                   step_size=stepSize,
+                                                l2_penalty=l2_penalty,
+                                                  tolerance=tolerance,
+                                             max_iterations=iterations)
     print simple_model
 
     l2_penalty = 1e11
-    simple_model_l2 = RR.Ridge_Regression_gradient_descent(train_feature_matrix,
-                                                                   train_output,
-                                                                   init_weights,
-                                                             step_size=stepSize,
-                                                          l2_penalty=l2_penalty,
-                                                            tolerance=tolerance,
-                                                       max_iterations=iterations)
+    simple_model_l2 = RR.Ridge_Regression_gradient_descent(train_feature,
+                                                            train_output,
+                                                         initial_weights,
+                                                      step_size=stepSize,
+                                                   l2_penalty=l2_penalty,
+                                                     tolerance=tolerance,
+                                                max_iterations=iterations)
     print simple_model_l2
+	
     plt.title('L2 penalty comparison')
     plt.ylabel('Price')
     plt.xlabel('Sq.ft.')
