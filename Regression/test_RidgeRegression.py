@@ -42,7 +42,7 @@ def main():
     train_feature, train_output = RR.extract_data_from_features(train_data, features, target)
     test_feature ,  test_output = RR.extract_data_from_features(test_data, features, target)
     l2_penalty = 0
-	
+
     simple_model = RR.Ridge_Regression_gradient_descent(train_feature,
                                                          train_output,
                                                       initial_weights,
@@ -61,15 +61,56 @@ def main():
                                                      tolerance=tolerance,
                                                 max_iterations=iterations)
     print simple_model_l2
-	
+
     plt.title('L2 penalty comparison')
     plt.ylabel('Price')
     plt.xlabel('Sq.ft.')
-    plt.plot(train_feature_matrix[:,1], train_output, 'k.', label='training data')
-    plt.plot(train_feature_matrix[:,1], RR.predict(train_feature_matrix, simple_model), 'b-', label='L2=0')
-    plt.plot(train_feature_matrix[:,1], RR.predict(train_feature_matrix, simple_model_l2), 'r-', label='L2=1e11')
+    plt.plot(train_feature[:,1], train_output, 'k.', label='training data')
+    plt.plot(train_feature[:,1], RR.predict(train_feature, simple_model), 'b-', label='L2=0')
+    plt.plot(train_feature[:,1], RR.predict(train_feature, simple_model_l2), 'r-', label='L2=1e11')
     plt.legend(loc='upper left')
     plt.show()
+
+    simple_model_test_RSS = RR.get_residual_sum_of_squares(test_feature,
+                                                        initial_weights,
+                                                            test_output)
+
+    simple_model_test_RSS_noL2 = RR.get_residual_sum_of_squares(test_feature,
+                                                         simple_model,
+                                                         test_output)
+
+    simple_model_test_RSS_L2 = RR.get_residual_sum_of_squares(test_feature,
+                                                         simple_model_l2,
+                                                         test_output)
+
+    # Complex model - two features
+    features = ['sqft_living', 'sqft_living15']
+    target = ['price']
+    initial_weights = np.array([0.0, 0.0, 0.0]).reshape((3, 1))
+    iterations = 1000
+    step = 1e-12
+    tolerance = 0
+
+    train_feature, train_output = RR.extract_data_from_features(train_data, features, target)
+    test_feature, test_output = RR.extract_data_from_features(test_data, features, target)
+
+    l2_penalty = 0
+    complex_model = RR.Ridge_Regression_gradient_descent(train_feature,
+                        train_output,
+                        initial_weights,
+                        step_size=step,
+                        l2_penalty=l2_penalty,
+                        tolerance=tolerance,
+                        max_iterations=iterations)
+
+    l2_penalty = 1e11
+    complex_model_l2 = RR.Ridge_Regression_gradient_descent(train_feature,
+                        train_output,
+                        initial_weights,
+                        step_size=step,
+                        l2_penalty=l2_penalty,
+                        tolerance=tolerance,
+                        max_iterations=iterations)
 
 
 
