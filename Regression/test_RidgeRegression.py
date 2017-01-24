@@ -111,6 +111,21 @@ def main():
                         l2_penalty=l2_penalty,
                         tolerance=tolerance,
                         max_iterations=iterations)
+	
+	complex_model_test_RSS = RR.get_residual_sum_of_squares(test_feature,
+                                                         initial_weights,
+                                                             test_output)
+	print complex_model_test_RSS
+
+    complex_model_test_RSS_noL2 = RR.get_residual_sum_of_squares(test_feature,
+                                                                complex_model,
+                                                                  test_output)
+    print complex_model_test_RSS_noL2
+
+    complex_model_test_RSS_L2 = RR.get_residual_sum_of_squares(test_feature,
+                                                           complex_model_l2,
+                                                                test_output)
+	print complex_model_test_RSS_L2
 
 
 
