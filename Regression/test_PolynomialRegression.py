@@ -93,6 +93,18 @@ def main():
     modelSet3.fit(polySet3, outputSet3)
     modelSet4.fit(polySet4, outputSet4)
 
+    # Plot order 15 fits
+    plot(modelSet1, polySet1, outputSet1)
+    plot(modelSet2, polySet2, outputSet2)
+    plot(modelSet3, polySet3, outputSet3)
+    plot(modelSet4, polySet4, outputSet4)
+
+    # Cross validation to select order
+    MAX_POLYNOMIAL_DEGREE = 15
+    RSS = np.zeros((MAX_POLYNOMIAL_DEGREE))
+    val_output = validation_data['price']
+    test_output = test_data['price']
+
 
 
 
