@@ -1,15 +1,15 @@
 #-------------------------------------------------------------------------------
-# Name:        polynomial regression
+# Name:        Polynomial Ridge Regression
 # Purpose:
 #
 # Author:      Nonlining
 #
-# Created:     09/01/2017
+# Created:     01/02/2017
 # Copyright:   (c) Nonlining 2017
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-import numpy as np
 import pandas as pd
+import numpy as np
 
 def polynomial_dataframe(feature, degree):
 
@@ -23,10 +23,3 @@ def polynomial_dataframe(feature, degree):
             poly[name] = feature.apply(lambda x: x**power)
 
     return poly
-
-
-def get_residual_sum_of_squares(model, features, output):
-
-    RSS = np.sum((output - model.predict(features)) ** 2)
-
-    return(RSS)

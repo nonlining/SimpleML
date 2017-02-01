@@ -62,6 +62,7 @@ def main():
                                                 max_iterations=iterations)
     print simple_model_l2
 
+
     plt.title('L2 penalty comparison')
     plt.ylabel('Price')
     plt.xlabel('Sq.ft.')
@@ -69,6 +70,7 @@ def main():
     plt.plot(train_feature[:,1], RR.predict(train_feature, simple_model), 'b-', label='L2=0')
     plt.plot(train_feature[:,1], RR.predict(train_feature, simple_model_l2), 'r-', label='L2=1e11')
     plt.legend(loc='upper left')
+
     plt.show()
 
     simple_model_test_RSS = RR.get_residual_sum_of_squares(test_feature,
@@ -111,11 +113,11 @@ def main():
                         l2_penalty=l2_penalty,
                         tolerance=tolerance,
                         max_iterations=iterations)
-	
-	complex_model_test_RSS = RR.get_residual_sum_of_squares(test_feature,
+
+    complex_model_test_RSS = RR.get_residual_sum_of_squares(test_feature,
                                                          initial_weights,
                                                              test_output)
-	print complex_model_test_RSS
+    print complex_model_test_RSS
 
     complex_model_test_RSS_noL2 = RR.get_residual_sum_of_squares(test_feature,
                                                                 complex_model,
@@ -125,7 +127,7 @@ def main():
     complex_model_test_RSS_L2 = RR.get_residual_sum_of_squares(test_feature,
                                                            complex_model_l2,
                                                                 test_output)
-	print complex_model_test_RSS_L2
+    print complex_model_test_RSS_L2
 
 
 

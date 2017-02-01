@@ -93,7 +93,7 @@ def main():
     modelSet3.fit(polySet3, outputSet3)
     modelSet4.fit(polySet4, outputSet4)
 
-    # Plot order 15 fits
+
     plot(modelSet1, polySet1, outputSet1)
     plot(modelSet2, polySet2, outputSet2)
     plot(modelSet3, polySet3, outputSet3)
