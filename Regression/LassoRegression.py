@@ -34,17 +34,12 @@ def lasso_cyclical_coordinate_descent(feature_matrix, output, initial_weights, l
     converged = False
 
     while not converged:
-        # Evaluate over all features
         for idx in range(D):
-            # New weight for feature
             new_weight = lasso_coordinate_descent_step(idx, feature_matrix,
                                                        output, weights,
                                                        l1_penalty)
-            # Compute change in weight for feature
             change[idx] = np.abs(new_weight - weights[idx])
-            # assign new weight
             weights[idx] = new_weight
-        # Maximum change in weight, after all changes have been computed
         max_change = max(change)
         if max_change < tolerance:
             converged = True
