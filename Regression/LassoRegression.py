@@ -11,6 +11,31 @@
 
 import numpy as np
 
+def extract(data_frame, features, output):
+    data_frame['constant'] = 1
+    features = ['constant'] + features
+    feature_matrix = np.array(data_frame[features])
+    if output == None:
+        output_array = []
+    else:
+        output_array = np.array(data_frame[output])
+
+    return(feature_matrix, output_array)
+
+
+def predict(feature_matrix, weights):
+    predictions = feature_matrix.dot(weights)
+    return(predictions)
+
+
+
+def RSS(feature_matrix, weights, output):
+
+    predictions = predict(feature_matrix, weights)
+    residual = np.sum((predictions - output) ** 2)
+    return(residual)
+
+
 
 def lasso_coordinate_descent_step(i, feature_matrix, output, weights, l1_penalty):
     predictions = feature_matrix.dot(weights)
