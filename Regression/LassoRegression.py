@@ -23,10 +23,16 @@ def extract(data_frame, features, output):
     return(feature_matrix, output_array)
 
 
+
+def normalize_features(matrix):
+    norms = np.linalg.norm(matrix, axis = 0)
+    features = matrix/norms
+    return features, norms
+
+
 def predict(feature_matrix, weights):
     predictions = feature_matrix.dot(weights)
     return(predictions)
-
 
 
 def RSS(feature_matrix, weights, output):
