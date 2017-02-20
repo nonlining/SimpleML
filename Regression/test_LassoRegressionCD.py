@@ -29,16 +29,18 @@ all_features = ['bedrooms', 'bedrooms_square', 'bathrooms',
 
 
 def main():
-    train_data = pd.read_csv('../Datafiles/kc_house_train_data.csv', dtype=dtype_dict)
-    test_data = pd.read_csv('../Datafiles/kc_house_test_data.csv', dtype=dtype_dict)
-
+    sales = pd.read_csv('../Datafiles/kc_house_data.csv', dtype=dtype_dict)
+    # only 2 features case
     simple_features = ['sqft_living', 'bedrooms']
     my_output = 'price'
-
-
-    (feature_matrix, output) = LR.extract(train_data, simple_features, my_output)
-    print feature_matrix
+    (simple_feature_matrix, output) = LR.extract(sales, simple_features, my_output)
+    print simple_feature_matrix
     print output
+    simple_feature_matrix, norms = LR.normalize_features(simple_feature_matrix)
+    print simple_feature_matrix[:, 1]
+    print norms
+
+
 
 
 
