@@ -38,7 +38,13 @@ def main():
     print output
     simple_feature_matrix, norms = LR.normalize_features(simple_feature_matrix)
     print simple_feature_matrix[:, 1]
-    print norms
+
+
+    weights = np.array([1., 4., 1.])
+    R1 = LR.getRo(simple_feature_matrix, output, weights, 1)
+    R2 = LR.getRo(simple_feature_matrix, output, weights, 2)
+    print "R1 is :",R1
+    print "R2 is :",R2
 
 
 

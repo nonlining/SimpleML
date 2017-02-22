@@ -41,6 +41,12 @@ def RSS(feature_matrix, weights, output):
     residual = np.sum((predictions - output) ** 2)
     return(residual)
 
+def getRo(feature_matrix, output, weights, i):
+
+    prediction = predict(feature_matrix, weights)
+    feature_i = feature_matrix[:, i]
+    ro_i = (feature_i * (output - prediction + weights[i] * feature_i)).sum()
+    return ro_i
 
 
 def lasso_coordinate_descent_step(i, feature_matrix, output, weights, l1_penalty):
