@@ -50,8 +50,8 @@ def getRo(feature_matrix, output, weights, i):
 
 
 def lasso_coordinate_descent_step(i, feature_matrix, output, weights, l1_penalty):
-    predictions = feature_matrix.dot(weights)
-    rho = (feature_matrix[:, i].T).dot(output - predictions + (weights[i] * feature_matrix[:, i]))
+    rho = getRo(feature_matrix, output, weights, i)
+
     if i==0:
         new_weight = rho
     elif rho < (-l1_penalty/2.0):
