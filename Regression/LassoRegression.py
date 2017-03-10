@@ -66,7 +66,7 @@ def lasso_coordinate_descent_step(i, feature_matrix, output, weights, l1_penalty
 def lasso_cyclical_coordinate_descent(feature_matrix, output, initial_weights, l1_penalty, tolerance):
 
     D = feature_matrix.shape[1]
-    weights = copy.copy(initial_weights)
+    weights = initial_weights[:]
     change = np.zeros(initial_weights.shape)
     converged = False
 
