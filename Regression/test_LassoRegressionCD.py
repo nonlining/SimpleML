@@ -14,6 +14,7 @@ import LassoRegression as LR
 from math import sqrt
 import math
 
+
 dtype_dict = {'bathrooms':float, 'waterfront':int, 'sqft_above':int,
               'sqft_living15':float, 'grade':int, 'yr_renovated':int,
               'price':float, 'bedrooms':float, 'zipcode':str,
@@ -46,6 +47,7 @@ def main():
     R2 = LR.getRo(simple_feature_matrix, output, weights, 2)
     print "R1 is :",R1
     print "R2 is :",R2
+    print LR.lasso_coordinate_descent_step(1, np.array([[3./sqrt(13),1./sqrt(10)],[2./sqrt(13),3./sqrt(10)]]), np.array([1., 1.]), np.array([1., 4.]), 0.1)
 
     print LR.lasso_coordinate_descent_step(1, np.array([[3./math.sqrt(13),1./math.sqrt(10)],[2./math.sqrt(13),3./math.sqrt(10)]]),
                                    np.array([1., 1.]), np.array([1., 4.]), 0.1)
