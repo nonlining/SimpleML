@@ -68,9 +68,9 @@ def lasso_cyclical_coordinate_descent(feature_matrix, output, initial_weights, l
     D = feature_matrix.shape[1]
     weights = initial_weights[:]
     change = np.zeros(initial_weights.shape)
-    converged = False
+    max_change = tolerance
 
-    while not converged:
+    while max_change >= tolerance:
         for idx in range(D):
             new_weight = lasso_coordinate_descent_step(idx, feature_matrix,
                                                        output, weights,
@@ -78,6 +78,5 @@ def lasso_cyclical_coordinate_descent(feature_matrix, output, initial_weights, l
             change[idx] = np.abs(new_weight - weights[idx])
             weights[idx] = new_weight
         max_change = max(change)
-        if max_change < tolerance:
-            converged = True
+
     return weights
