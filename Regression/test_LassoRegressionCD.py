@@ -64,8 +64,6 @@ def main():
 
     print weights
 
-
-
     (feature_matrix, output) = LR.extract(train_data, all_features, my_output)
 
     (normalized_feature_matrix, norms) = LR.normalize_features(feature_matrix)
@@ -80,6 +78,25 @@ def main():
     weights1e4 = LR.lasso_cyclical_coordinate_descent(normalized_all_feature_matrix, train_output, initial_weights, 1e4, tolerance)
     weights1e4_normalized = weights1e4 / train_norms
     print weights1e4_normalized
+
+
+    #######
+    l1_penalty = 1e7
+    tolerance=1
+    initial_weights = np.zeros(len(all_features) + 1)
+    weights1e7 = LR.lasso_cyclical_coordinate_descent(normalized_feature_matrix, output,
+                                            initial_weights, l1_penalty, tolerance)
+
+    print weights1e7
+
+    for i in range(1, len(weights1e7)):
+        if (weights1e7[i]):
+            print all_features[i-1], weights1e7[i]
+
+    if weights1e7[0]:
+        print 'constant',weights1e7[0]
+
+
 
 
 
