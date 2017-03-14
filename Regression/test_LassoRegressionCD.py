@@ -97,6 +97,68 @@ def main():
         print 'constant',weights1e7[0]
 
 
+    l1_penalty = 1e8
+    tolerance=1
+    initial_weights = np.zeros(len(all_features) + 1)
+    weights1e8 = LR.lasso_cyclical_coordinate_descent(normalized_feature_matrix, output,
+                                                initial_weights, l1_penalty, tolerance)
+
+    print weights1e8
+
+    for i in range(1, len(weights1e8)):
+        if (weights1e8[i]):
+            print all_features[i-1], weights1e8[i]
+
+    if weights1e8[0]:
+        print 'constant',weights1e8[0]
+
+
+    l1_penalty = 1e4
+    tolerance=5e5
+    initial_weights = np.zeros(len(all_features) + 1)
+    weights1e4 = LR.lasso_cyclical_coordinate_descent(normalized_feature_matrix, output,
+                                                initial_weights, l1_penalty, tolerance)
+
+    print weights1e4
+
+    for i in range(1, len(weights1e4)):
+        if (weights1e4[i]):
+            print all_features[i-1], weights1e4[i]
+
+    if weights1e4[0]:
+        print 'constant',weights1e4[0]
+
+
+    normalized_weights1e7 = weights1e7 / norms
+    normalized_weights1e8 = weights1e8 / norms
+    normalized_weights1e4 = weights1e4 / norms
+
+    print normalized_weights1e4
+    print normalized_weights1e7
+    print normalized_weights1e8
+    print normalized_weights1e7[3]
+
+    (test_feature_matrix, test_output) = LR.extract(test_data, all_features, 'price')
+
+
+    normalized_pred_weights1e7 = LR.predict(test_feature_matrix, normalized_weights1e7)
+    res = normalized_pred_weights1e7 - test_output
+    RSS_1e7 = (res*res).sum()
+    print RSS_1e7
+
+    normalized_pred_weights1e8 = LR.predict(test_feature_matrix, normalized_weights1e8)
+    res = normalized_pred_weights1e8 - test_output
+    RSS_1e8 = (res*res).sum()
+    print RSS_1e8
+
+    normalized_pred_weights1e4 = LR.predict(test_feature_matrix, normalized_weights1e4)
+    res = normalized_pred_weights1e4 - test_output
+    RSS_1e4 = (res*res).sum()
+    print RSS_1e4
+
+
+
+
 
 
 
