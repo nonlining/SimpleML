@@ -26,3 +26,8 @@ def normalize_features(matrix):
     norms = np.linalg.norm(matrix, axis = 0)
     features = matrix/norms
     return features, norms
+
+def distance(a, b):
+    power2 = (a-b)**2
+    dis = np.sqrt(np.sum(power2))
+    return dis
