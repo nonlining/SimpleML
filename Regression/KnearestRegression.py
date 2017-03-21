@@ -31,3 +31,17 @@ def distance(a, b):
     power2 = (a-b)**2
     dis = np.sqrt(np.sum(power2))
     return dis
+
+def getDistances(all_features, quary_point):
+    diff = all_features - quary_point
+    distance = np.sqrt(np.sum(diff**2, axis = 1))
+    return distance
+
+
+def FetchKNN(k, features , queries):
+
+    distances = getDistances(features_train, features_query)
+    sorted_distances_idx = np.argsort(distances)
+    neighbors = sorted_distances_idx[0:k]
+
+    return neighbors
