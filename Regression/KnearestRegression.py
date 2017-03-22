@@ -45,3 +45,19 @@ def FetchKNN(k, features , queries):
     neighbors = sorted_distances_idx[0:k]
 
     return neighbors
+
+
+def predictKNN(k, features, outputs, queries):
+    kNN = FetchKNN(k, features, queries)
+    tot = 0
+    for i in kNN:
+        tot += outputs[i]
+
+    return tot/k
+
+def predictMultiKNN(k, features, outputs, queries):
+    shape_queries = queries.shape[0]
+    preds = []
+    for i in range(shape_queries):
+        preds.append(predictKNN(k, features, outputs, queries[i]))
+    return preds
