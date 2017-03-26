@@ -8,9 +8,47 @@
 # Copyright:   (c) Nonlining 2017
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
+import numpy as np
+import pandas as pd
+import KnearestRegression as KNN
+
+dtype_dict = {'bathrooms':float, 'waterfront':int, 'sqft_above':int,
+              'sqft_living15':float, 'grade':int, 'yr_renovated':int,
+              'price':float, 'bedrooms':float, 'zipcode':str,
+              'long':float, 'sqft_lot15':float, 'sqft_living':float,
+              'floors':float, 'condition':int, 'lat':float, 'date':str,
+              'sqft_basement':int, 'yr_built':int, 'id':str,
+              'sqft_lot':int, 'view':int}
+
+feature_list = ['bedrooms',
+                'bathrooms',
+                'sqft_living',
+                'sqft_lot',
+                'floors',
+                'waterfront',
+                'view',
+                'condition',
+                'grade',
+                'sqft_above',
+                'sqft_basement',
+                'yr_built',
+                'yr_renovated',
+                'lat',
+                'long',
+                'sqft_living15',
+                'sqft_lot15']
 
 def main():
-    pass
+    train = pd.read_csv('../Datafiles/kc_house_data_small_train.csv', dtype=dtype_dict)
+    valid = pd.read_csv('../Datafiles/kc_house_data_validation.csv', dtype=dtype_dict)
+    test = pd.read_csv('../Datafiles/kc_house_data_small_test.csv', dtype=dtype_dict)
+
+
+    features_train, output_train = KNN.extract(train, feature_list, 'price')
+    features_test, output_test = KNN.extract(test, feature_list, 'price')
+    features_valid, output_valid = KNN.extract(valid, feature_list, 'price')
+
+
 
 if __name__ == '__main__':
     main()
