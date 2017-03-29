@@ -49,6 +49,15 @@ def main():
     features_valid, output_valid = KNN.extract(valid, feature_list, 'price')
 
 
+    features_train, norms = KNN.normalize_features(features_train) # normalize training set features (columns)
+    features_test = features_test / norms # normalize test set by training set norms
+    features_valid = features_valid / norms # normalize validation set by training set norms
+    print features_test[0]
+    print features_train[9]
+
+
+
+
 
 if __name__ == '__main__':
     main()
