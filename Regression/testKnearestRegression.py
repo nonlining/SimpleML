@@ -55,6 +55,24 @@ def main():
     print features_test[0]
     print features_train[9]
 
+    print KNN.distance(features_test[0], features_train[9])
+
+    min_dist = float('inf')
+    min_index = 0
+
+    for i, j in enumerate(features_train[0:10]):
+        dist = KNN.distance(features_test[0], j)
+        print i, dist
+        if dist < min_dist:
+            min_dist = dist
+            min_index = i
+
+    print min_index, min_dist
+
+
+
+
+
 
 
 
