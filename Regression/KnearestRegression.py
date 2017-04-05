@@ -40,7 +40,7 @@ def getDistances(all_features, quary_point):
 
 def FetchKNN(k, features , queries):
 
-    distances = getDistances(features_train, features_query)
+    distances = getDistances(features, queries)
     sorted_distances_idx = np.argsort(distances)
     neighbors = sorted_distances_idx[0:k]
 

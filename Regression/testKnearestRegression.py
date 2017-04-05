@@ -69,6 +69,13 @@ def main():
 
     print min_index, min_dist
 
+    ans = KNN.FetchKNN(4, features_train, features_test[2])
+    print ans
+    print KNN.getDistances(features_train[ans],features_test[2])
+
+
+
+
 
 
 
