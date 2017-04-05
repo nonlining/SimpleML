@@ -73,7 +73,22 @@ def main():
     print ans
     print KNN.getDistances(features_train[ans],features_test[2])
 
+    print KNN.predictMultiKNN(1, features_train, output_train, features_test[0:10])
+    print KNN.predictMultiKNN(4, features_train, output_train, features_test[0:10])
+    print KNN.predictMultiKNN(10, features_train, output_train, features_test[0:10])
+    pred_prices = KNN.predictMultiKNN(10, features_train, output_train, features_test[0:10])
+    print KNN.predictKNN(10, features_train, output_train, features_test[0])
+    print KNN.predictKNN(10, features_train, output_train, features_test[9])
 
+    lowest_price = float('inf')
+    lowest_index = 0
+
+    for i,p in enumerate(pred_prices):
+        if p < lowest_price:
+            lowest_price = p
+            lowest_index = i
+
+    print lowest_index, lowest_price
 
 
 
