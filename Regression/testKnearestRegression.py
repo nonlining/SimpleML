@@ -11,6 +11,10 @@
 import numpy as np
 import pandas as pd
 import KnearestRegression as KNN
+import matplotlib.pyplot as plt
+
+
+
 
 dtype_dict = {'bathrooms':float, 'waterfront':int, 'sqft_above':int,
               'sqft_living15':float, 'grade':int, 'yr_renovated':int,
@@ -89,6 +93,28 @@ def main():
             lowest_index = i
 
     print lowest_index, lowest_price
+
+    #Choosing the best value of k using a validation set
+
+
+    rss_all = []
+    for k in range(1, 16):
+        pred_prices = KNN.predictMultiKNN(k, features_train, output_train, features_valid)
+        res = pred_prices - output_valid
+        RSS = (res*res).sum()
+        print k,'-',RSS
+        rss_all.append(RSS)
+
+    kvals = range(1, 16)
+    print len(kvals), len(rss_all)
+    plt.plot(kvals, rss_all,'bo-')
+
+    pred_prices_test = KNN.predictMultiKNN(8, features_train, output_train, features_test)
+    res = pred_prices_test - output_test
+    RSS = (res*res).sum()
+    print RSS
+
+
 
 
 
