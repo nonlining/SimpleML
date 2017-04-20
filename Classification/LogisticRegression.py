@@ -13,14 +13,14 @@ import string
 def remove_punctuation(text):
     return text.translate(None, string.punctuation)
 
-
-
 def get_classification_accuracy(model, data, true_labels):
-
     pred_result = model.predict(data)
     correctPredictions = sum(pred_result == true_labels)
 
     accuracy = correctPredictions/float(len(true_labels))
-
     return accuracy
+	
+def compute_probability(score):
+
+    return 1.0/(1 + np.exp(-score))
 
