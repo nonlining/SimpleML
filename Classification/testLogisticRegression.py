@@ -8,9 +8,16 @@
 # Copyright:   (c) Nonlining 2017
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
+import numpy as np
+import sframe as sf
+import LogisticRegression as LR
+
 
 def main():
-    pass
+    products = sf.SFrame('../Datafiles/amazon_baby.gl/')
+    print products
+    print products[269]
+    review_without_punctuation = products['review'].apply(LR.remove_punctuation)
 
 if __name__ == '__main__':
     main()
