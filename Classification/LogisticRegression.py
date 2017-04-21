@@ -10,16 +10,29 @@
 #-------------------------------------------------------------------------------
 import string
 
+
+def extract(data_frame, features, label):
+
+    data_frame['constant'] = 1.0
+    features = ['constant'] + features
+    features_matrix = data_frame[features].to_numpy()
+    if label != None:
+        label_array = data_frame[label].to_numpy()
+    else:
+        label_array = []
+		
+    return(features_matrix, label_array)
+
 def remove_punctuation(text):
     return text.translate(None, string.punctuation)
 
 def get_classification_accuracy(model, data, true_labels):
     pred_result = model.predict(data)
-    correctPredictions = sum(pred_result == true_labels)
+    correct = sum(pred_result == true_labels)
 
-    accuracy = correctPredictions/float(len(true_labels))
+    accuracy = correct/float(len(true_labels))
     return accuracy
-	
+
 def compute_probability(score):
 
     return 1.0/(1 + np.exp(-score))
