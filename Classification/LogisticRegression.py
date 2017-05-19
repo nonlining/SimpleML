@@ -26,6 +26,16 @@ def extract(data_frame, features, label):
 def remove_punctuation(text):
     return text.translate(None, string.punctuation)
 
+def countWords(string):
+    wordCount = {}
+    for i in string.split(' '):
+        if i in wordCount:
+            wordCount[i] += 1
+        else:
+            wordCount[i] = 1
+
+    return wordCount
+
 def get_classification_accuracy(model, data, true_labels):
     pred_result = model.predict(data)
     correct = sum(pred_result == true_labels)

@@ -18,6 +18,12 @@ def main():
     print products
     print products[269]
     review_without_punctuation = products['review'].apply(LR.remove_punctuation)
+    products['word_count'] = review_without_punctuation.apply(countWords)
+
+    print products[269]['word_count']
+
+
+
     products = products[products['rating'] != 3]
     print len(products)
 
