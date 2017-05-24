@@ -11,6 +11,8 @@
 import numpy as np
 import sframe as sf
 import LogisticRegression as LR
+from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 def main():
@@ -19,6 +21,7 @@ def main():
     print products[269]
     review_without_punctuation = products['review'].apply(LR.remove_punctuation)
     products['word_count'] = review_without_punctuation.apply(LR.countWords)
+    products['clear_words'] = review_without_punctuation
 
     print products[269]['word_count']
 
@@ -34,7 +37,17 @@ def main():
     print len(train_data)
     print len(test_data)
 
+    vectorizer = CountVectorizer(token_pattern=r'\b\w+\b')
 
+    train_matrix = vectorizer.fit_transform(review_without_punctuation)
+    print train_matrix
+
+    #test_matrix = vectorizer.transform(test_data['review_clean'])
+    #words = vectorizer.get_feature_names()
+
+    #sentiment_model = LogisticRegression()
+    #sentiment_model.fit(train_matrix, train_data['sentiment'])
+    #print sentiment_model
 
 
 if __name__ == '__main__':
