@@ -39,15 +39,13 @@ def main():
 
     vectorizer = CountVectorizer(token_pattern=r'\b\w+\b')
 
-    train_matrix = vectorizer.fit_transform(review_without_punctuation)
-    print train_matrix
+    train_matrix = vectorizer.fit_transform(train_data['clear_words'])
 
-    #test_matrix = vectorizer.transform(test_data['review_clean'])
-    #words = vectorizer.get_feature_names()
+    words = vectorizer.get_feature_names()
 
-    #sentiment_model = LogisticRegression()
-    #sentiment_model.fit(train_matrix, train_data['sentiment'])
-    #print sentiment_model
+    sentiment_model = LogisticRegression()
+    sentiment_model.fit(train_matrix, train_data['sentiment'])
+
 
 
 if __name__ == '__main__':
