@@ -50,7 +50,7 @@ def main():
     sample_test_data = test_data[10:13]
     sample_test_matrix = vectorizer.transform(sample_test_data['review_clean'])
     sample_test_scores = sentiment_model.decision_function(sample_test_matrix)
-    sample_test_probabilities = sigmoid(sample_test_scores)
+    sample_test_probabilities = LR.sigmoid(sample_test_scores)
 
 
 
