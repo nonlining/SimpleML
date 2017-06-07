@@ -46,6 +46,12 @@ def main():
     sentiment_model = LogisticRegression()
     sentiment_model.fit(train_matrix, train_data['sentiment'])
 
+    coef_table = sf.SFrame({'word':words, 'coefficient':sentiment_model.coef_.flatten()})
+    sample_test_data = test_data[10:13]
+    sample_test_matrix = vectorizer.transform(sample_test_data['review_clean'])
+    sample_test_scores = sentiment_model.decision_function(sample_test_matrix)
+    sample_test_probabilities = sigmoid(sample_test_scores)
+
 
 
 if __name__ == '__main__':
