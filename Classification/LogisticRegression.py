@@ -24,7 +24,11 @@ def extract(data_frame, features, label):
     return(features_matrix, label_array)
 
 def remove_punctuation(text):
-    return text.translate(None, string.punctuation)
+    if type(text) is str:
+        return text.translate(None, string.punctuation)
+    else:
+        return str(text).translate(None, string.punctuation)
+
 
 def countWords(string):
     wordCount = {}
