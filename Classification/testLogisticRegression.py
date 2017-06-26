@@ -1,10 +1,10 @@
 #-------------------------------------------------------------------------------
-# Name:        test Logistic Regression
+# Name:        test Logistic Regression with pandas
 # Purpose:
 #
 # Author:      Nonlining
 #
-# Created:     17/04/2017
+# Created:     17/06/2017
 # Copyright:   (c) Nonlining 2017
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
@@ -36,6 +36,7 @@ def main():
     train = products[mask]
     test = products[~mask]
     print len(train), len(test)
+
 
 
 
