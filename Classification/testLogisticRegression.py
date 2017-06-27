@@ -15,6 +15,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import CountVectorizer
 import string
 
+
+
 def main():
     products = pd.read_csv('../Datafiles/amazon_baby.csv')
     print products.iloc[269]
@@ -36,6 +38,19 @@ def main():
     train = products[mask]
     test = products[~mask]
     print len(train), len(test)
+
+    reviews = np.array(train['clear_words'])
+    labels = np.array(train['sentiment'])
+
+
+    SentimentWithNN = LR.SentimentNetwork(reviews,labels, learning_rate=0.1)
+
+    SentimentWithNN.train(reviews, labels)
+
+
+
+
+
 
 
 
