@@ -42,10 +42,10 @@ def main():
     reviews = np.array(train['clear_words'])
     labels = np.array(train['sentiment'])
 
+    # using 1000 samples to train
+    SentimentWithNN = LR.SentimentNetwork(reviews[:1000],labels[:1000], learning_rate=0.1)
 
-    SentimentWithNN = LR.SentimentNetwork(reviews,labels, learning_rate=0.1)
-
-    SentimentWithNN.train(reviews, labels)
+    SentimentWithNN.train(reviews[:1000], labels[:1000])
 
 
 
