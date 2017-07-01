@@ -43,9 +43,9 @@ def main():
     labels = np.array(train['sentiment'])
 
     # using 10000 samples to train
-    SentimentWithNN = LR.SentimentNetwork(reviews,labels, learning_rate=0.1)
+    SentimentWithNN = LR.SentimentNetwork(reviews[:150000],labels[:150000], learning_rate=0.1)
 
-    SentimentWithNN.train(reviews, labels)
+    SentimentWithNN.train(reviews[:150000], labels[:150000])
 
 
 
