@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        test Logistic Regression with pandas
+# Name:        test Logistic Regression with Neural Network
 # Purpose:
 #
 # Author:      Nonlining
@@ -9,6 +9,7 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 import LogisticRegression as LR
+import NeuralNetwork as NN
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LogisticRegression
@@ -19,18 +20,16 @@ import string
 
 def main():
     products = pd.read_csv('../Datafiles/amazon_baby.csv')
-    print products.iloc[269]
-    print products['review']
+    #print products.iloc[269]
+    #print products['review']
     review_without_punctuation = products['review'].apply(LR.remove_punctuation)
 
     products['word_count'] = review_without_punctuation.apply(LR.countWords)
     products['clear_words'] = review_without_punctuation
-    print products.iloc[269]['word_count']
+    #print products.iloc[269]['word_count']
 
     products = products[products['rating'] != 3]
-    len(products)
     products['sentiment'] = products['rating'].apply(lambda rating : +1 if rating > 3 else -1)
-    print products
     np.random.seed(seed=1)
 
     mask = np.random.rand(len(products)) < 0.8
@@ -42,21 +41,20 @@ def main():
     reviews = np.array(train['clear_words'])
     labels = np.array(train['sentiment'])
 
-    # using 10000 samples to train
-    SentimentWithNN = LR.SentimentNetwork(reviews,labels, learning_rate=0.1)
+    # using 15000 samples to train
+    SentimentWithNN = NN.SentimentNetwork(reviews,labels, learning_rate=0.1)
 
     SentimentWithNN.train(reviews, labels)
+<<<<<<< HEAD:Classification/testLogisticRegression.py
     print "Finish Training"
+=======
+    # test
+    test_reviews = np.array(test['clear_words'])
+>>>>>>> 4009e0482b81bb7f2d80ab0128f62e7d90ae8f04:Classification/testLogisticRegression_withNN.py
 
+    test_labels = np.array(test['sentiment'])
 
-
-
-
-
-
-
-
-
+    SentimentWithNN.test(test_reviews, test_labels)
 
 
 if __name__ == '__main__':
