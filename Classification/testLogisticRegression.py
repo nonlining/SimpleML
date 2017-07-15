@@ -46,6 +46,7 @@ def main():
     SentimentWithNN = LR.SentimentNetwork(reviews,labels, learning_rate=0.1)
 
     SentimentWithNN.train(reviews, labels)
+    print "Finish Training"
 
 
 
