@@ -12,10 +12,7 @@ import LogisticRegression as LR
 import NeuralNetwork as NN
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.feature_extraction.text import CountVectorizer
 import string
-
 
 
 def main():
@@ -45,13 +42,11 @@ def main():
     SentimentWithNN = NN.SentimentNetwork(reviews,labels, learning_rate=0.1)
 
     SentimentWithNN.train(reviews, labels)
-<<<<<<< HEAD:Classification/testLogisticRegression.py
+
     print "Finish Training"
-=======
+
     # test
     test_reviews = np.array(test['clear_words'])
->>>>>>> 4009e0482b81bb7f2d80ab0128f62e7d90ae8f04:Classification/testLogisticRegression_withNN.py
-
     test_labels = np.array(test['sentiment'])
 
     SentimentWithNN.test(test_reviews, test_labels)
