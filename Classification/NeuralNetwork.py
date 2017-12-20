@@ -1,8 +1,8 @@
 #-------------------------------------------------------------------------------
-# Name:        module1
+# Name:        Neural Network
 # Purpose:
 #
-# Author:      jwang32
+# Author:      Udacity
 #
 # Created:     02/07/2017
 # Copyright:   (c) jwang32 2017
@@ -120,9 +120,9 @@ class SentimentNetwork:
 
             reviews_per_second = i / float(time.time() - start)
 
-            if(i % 1000 == 0 or i == len(training_reviews) -1):
+            if(i % 100 == 0 or i == len(training_reviews) -1):
                 sys.stdout.write("\rProgress:" + str(100 * i/float(len(training_reviews)))[:4] + "% Speed(reviews/sec):" + str(reviews_per_second)[0:5] + " #Correct:" + str(correct_so_far) + " #Trained:" + str(i+1) + " Training Accuracy:" + str(correct_so_far * 100 / float(i+1))[:4] + "%")
-            if(i % 3000 == 0):
+            if(i % 300 == 0):
                 print("")
 
     def test(self, testing_reviews, testing_labels):

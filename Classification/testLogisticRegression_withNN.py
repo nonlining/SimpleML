@@ -16,6 +16,8 @@ import string
 
 
 def main():
+    np.random.seed(seed=1)
+
     products = pd.read_csv('../Datafiles/amazon_baby.csv')
     #print products.iloc[269]
     #print products['review']
@@ -27,13 +29,13 @@ def main():
 
     products = products[products['rating'] != 3]
     products['sentiment'] = products['rating'].apply(lambda rating : +1 if rating > 3 else -1)
-    np.random.seed(seed=1)
+
 
     mask = np.random.rand(len(products)) < 0.8
 
     train = products[mask]
     test = products[~mask]
-    print len(train), len(test)
+    print "Training data size",len(train), "Testing data size",len(test)
 
     reviews = np.array(train['clear_words'])
     labels = np.array(train['sentiment'])
