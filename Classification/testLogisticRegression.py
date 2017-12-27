@@ -8,6 +8,9 @@
 # Copyright:   (c) Nonlining 2017
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
+import LogisticRegression as LR
+import pandas as pd
+import numpy as np
 
 def main():
     pass
