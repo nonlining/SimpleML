@@ -13,7 +13,10 @@ import pandas as pd
 import numpy as np
 
 def main():
-    pass
+    np.random.seed(seed=1)
+    products = pd.read_csv('../Datafiles/amazon_baby.csv')
+    # print 5 items in the list
+    print products.head()
 
 if __name__ == '__main__':
     main()
