@@ -12,6 +12,11 @@ import LogisticRegression as LR
 import pandas as pd
 import numpy as np
 
+# import sklearn for sentiment
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn import datasets, linear_model
+from sklearn.linear_model import LogisticRegression
+
 def main():
     np.random.seed(seed=1)
 
@@ -29,6 +34,14 @@ def main():
     products['sentiment'] = products['rating'].apply(lambda rating: +1 if rating > 3 else -1)
 
     mask = np.random.rand(len(products)) < 0.8
+
+    train = products[mask]
+    test = products[~mask]
+    print "Training data size",len(train), "Testing data size",len(test)
+
+    reviews = np.array(train['clear_words'])
+    labels = np.array(train['sentiment'])
+
 
 
 
