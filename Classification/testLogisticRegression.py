@@ -39,8 +39,18 @@ def main():
     test = products[~mask]
     print "Training data size",len(train), "Testing data size",len(test)
 
-    reviews = np.array(train['clear_words'])
-    labels = np.array(train['sentiment'])
+    train_reviews = np.array(train['clear_words'])
+    train_labels = np.array(train['sentiment'])
+
+    vectorizer = CountVectorizer(token_pattern=r'\b\w+\b')
+    train_matrix = vectorizer.fit_transform(train_reviews)
+
+    sentiment_model = LogisticRegression()
+
+    sentiment_model.fit(train_matrix, train_labels)
+
+
+
 
 
 
