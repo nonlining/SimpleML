@@ -42,12 +42,13 @@ def main():
     train_reviews = np.array(train['clear_words'])
     train_labels = np.array(train['sentiment'])
 
-    vectorizer = CountVectorizer(token_pattern=r'\b\w+\b')
-    train_matrix = vectorizer.fit_transform(train_reviews)
+
+    vect = CountVectorizer().fit(train_reviews)
+    trained_vectorized = vect.transform(train_reviews)
 
     sentiment_model = LogisticRegression()
 
-    sentiment_model.fit(train_matrix, train_labels)
+    sentiment_model.fit(trained_vectorized, train_labels)
 
 
 
