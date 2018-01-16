@@ -49,6 +49,13 @@ def main():
     sentiment_model = LogisticRegression()
 
     sentiment_model.fit(trained_vectorized, train_labels)
+    print sentiment_model.coef_
+    print np.sum(sum(sentiment_model.coef_ >= 0))
+
+    sample_test_data = test[10:13]
+    print sample_test_data
+
+
 
 
 
