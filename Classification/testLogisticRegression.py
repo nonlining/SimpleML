@@ -55,6 +55,10 @@ def main():
     sample_test_data = test[10:13]
     print sample_test_data
 
+    sample_test_matrix = vect.transform(sample_test_data['clear_words'])
+
+    print sentiment_model.predict(sample_test_matrix)
+
 
 
 
