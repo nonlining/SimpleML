@@ -62,7 +62,7 @@ def main():
     # result is 1, 1, -1
     scores = sentiment_model.decision_function(sample_test)
     print scores
-    probability = LR.compute_probability(score)
+    probability = LR.compute_probability(scores)
     print probability
 
 
