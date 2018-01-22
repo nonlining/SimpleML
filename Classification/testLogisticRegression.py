@@ -54,10 +54,16 @@ def main():
 
     sample_test_data = test[10:13]
     print sample_test_data
+    # 1, 1, -1 for sentiment
 
-    sample_test_matrix = vect.transform(sample_test_data['clear_words'])
-
-    print sentiment_model.predict(sample_test_matrix)
+    sample_test = vect.transform(sample_test_data['clear_words'])
+    # first test
+    print sentiment_model.predict(sample_test)
+    # result is 1, 1, -1
+    scores = sentiment_model.decision_function(sample_test)
+    print scores
+    probability = LR.compute_probability(score)
+    print probability
 
 
 
