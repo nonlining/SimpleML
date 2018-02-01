@@ -65,6 +65,13 @@ def main():
     probability = LR.compute_probability(scores)
     print probability
 
+    # start to use test data
+    test_vect = vect.transform(test['clear_words'])
+    scores_test = sentiment_model.decision_function(test_vect)
+
+    pred_test = LR.compute_probability(scores_test)
+    print pred_test
+
 
 
 
