@@ -61,16 +61,28 @@ def main():
     print sentiment_model.predict(sample_test)
     # result is 1, 1, -1
     scores = sentiment_model.decision_function(sample_test)
-    print scores
     probability = LR.compute_probability(scores)
     print probability
 
     # start to use test data
     test_vect = vect.transform(test['clear_words'])
-    scores_test = sentiment_model.decision_function(test_vect)
 
-    pred_test = LR.compute_probability(scores_test)
-    print pred_test
+    test_pred = sentiment_model.predict(test_vect)
+
+    test_scores = sentiment_model.decision_function(test_vect)
+
+    test_prob = LR.compute_probability(test_scores)
+
+    test['predictions'] = test_pred
+
+    test.sort('predictions', ascending = False)
+
+    print test.head(20)
+
+
+
+
+
 
 
 
